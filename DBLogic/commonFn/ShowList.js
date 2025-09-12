@@ -1,19 +1,24 @@
-//table 이름 url로 받아서 해당 테이블 출력
-const express = require('express');
-const db = require('../../db'); 
+// DBLogic/commonFun/showList.js
+const db = require('../../DataBase/initdb.js');
 
-const app = express();
+// 허용된 테이블 목록 (보안상 필수)
+const allowedTables = ['admin_user', 'reservationList', 'user'];
 
-function showList(tableName) {
-  const query = `SELECT * FROM ?`;
-  db.all(query, tableName, (err, rows) => {
+function showList(tableName, res) {
+  // 테이블 이름 검증
+  if (!allowedTables.includes(tableName)) {
+    return res.status(400).json({ error: '허용되지 않은 테이블입니다.' });
+  }
+
+  // 데이터 조회
+  db.all(`SELECT * FROM ${tableName}`, (err, rows) => {
     if (err) {
-      return res.status(500).json({ error: `${tableName} 데이터 개시 실패` });
+      console.error(`❌ ${tableName} 테이블 조회 실패:`, err.message);
+      return res.status(500).json({ error: `${tableName} 테이블 출력 실패` });
     }
-    res.json(rows); // JSON으로 결과 반환
-
-
+    console.log(`✅ ${tableName} 테이블 조회 성공`);
+    res.json(rows);
   });
 }
 
-module.exports = showList
+module.exports = showList;
