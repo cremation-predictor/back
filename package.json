@@ -18,10 +18,16 @@
   },
   "homepage": "https://github.com/cremation-predictor/back#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "csv-parser": "^3.2.0",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "sqlite3": "^5.1.7"
+    "openai": "^5.20.2",
+    "python-shell": "^5.0.0",
+    "sqlite3": "^5.1.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@ljharb/tsconfig": "^0.3.2"
