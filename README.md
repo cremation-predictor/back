@@ -50,11 +50,15 @@ back/
 ---
 
 ## 기술 스택
-- **Node.js (Express.js)**  
-- **Python 3.x**  
-- **SQLite3**  
-- **CSV 파일 (CrematoriumStatus.csv)**  
-- **scikit-learn**
+### 언어
+- **Node.js (Express.js)** : 메인 서버 프레임워크
+- **Python 3.x** : 머신러닝 모델 실행 및 예측
+
+### DB
+- **SQLite3** : 경량 데이터베이스 (예약, 사용자, 관리자 정보 저장)
+- **CSV 파일 (CrematoriumStatus.csv)** : 화장장 상태 데이터 관리
+
+
 
 ---
 
