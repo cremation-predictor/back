@@ -64,6 +64,69 @@ back/
 
 ---
 
+### 테이블 구조
+
+#### 1. `admin_user`
+- **설명:** 관리자 계정 정보를 저장하는 테이블입니다.  
+- **특징:**  
+  - ID는 기본 키  
+  - 비밀번호는 중복 불가  
+  - 소속 시설명은 중복 가능 (Crematorium 테이블과 연계)  
+- **컬럼:**  
+  - `id` (PK) : 관리자 ID  
+  - `password` (NOT NULL) : 비밀번호  
+  - `facility` : 소속 시설명  
+
+---
+
+#### 2. `Crematorium`
+- **설명:** 전국 화장장 시설 정보를 저장합니다. 보건복지부 화장시설 CSV 파일에서 자동 삽입됩니다.  
+- **특징:**  
+  - 기본 정보(주소, 연락처, 홈페이지 등)  
+  - 부대시설 여부(식당, 매점, 주차장, 대기실, 장애인 편의시설 등)  
+- **컬럼:**  
+  - `facilityName` (PK) : 시설명  
+  - `province` (NOT NULL) : 시/도  
+  - `district` (NOT NULL) : 시/군/구  
+  - `address` (NOT NULL) : 주소  
+  - `phoneNumber` (NOT NULL) : 전화번호  
+  - `website` : 홈페이지 주소  
+  - `parkingCapacity` : 주차 가능 대수  
+  - `ownershipType` : 공공/사설 구분  
+  - `cremationUnits` : 화장로 수  
+  - `hasRestaurant` : 식당 여부  
+  - `hasStore` : 매점 여부  
+  - `hasParkingLot` : 주차장 여부  
+  - `hasWaitingRoom` : 유족 대기실 여부  
+  - `hasAccessibilityFacilities` : 장애인 편의시설 여부  
+
+---
+
+#### 3. `reservationList`
+- **설명:** 예약 내역을 관리하는 테이블입니다.  
+- **특징:**  
+  - 예약자와 고인 정보를 기록  
+  - 관리자들이 시설·시간·화장 횟수를 관리할 수 있도록 지원  
+  - 통계 분석 및 예측 모델 학습 데이터로 활용 가능  
+- **컬럼:**  
+  - `id` (PK) : 예약자 ID  
+  - `name` : 예약자 이름  
+  - `facility` : 예약 시설명  
+  - `date` : 예약 일시  
+  - `numberOfcremation` : 화장로 번호(또는 회차)  
+  - `deadPersonName` : 고인 이름  
+
+---
+
+#### 4. `user`
+- **설명:** 사용자 기본 정보를 저장하는 테이블입니다.  
+- **특징:**  
+  - 현재는 활용도가 낮지만, 공공기관 공유 및 추후 확장 대비용  
+- **컬럼:**  
+  - `name` (PK) : 사용자 이름  
+  - `date` : 등록일  
+---
+
 ## API
 
 ### 1) Admin User API
